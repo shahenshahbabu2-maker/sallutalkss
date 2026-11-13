@@ -1,719 +1,346 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sallu Talks (@sallutalkss) | Official Creator Hub</title>
-    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Tailwind CSS -->
+    <title>Sallu Talks - Official Creator Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Official Google/YouTube Platform Script for Live Subscribe Button -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
                     colors: {
-                        ytRed: '#FF0000',
-                        ytDarkRed: '#CC0000',
-                        darkBg: '#09090B',
-                        cardBg: '#121216',
+                        youtube: '#ff0000',
+                        darkbg: '#0f0f0f',
+                        cardbg: '#1f1f1f',
                     }
                 }
             }
         }
     </script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background-color: #09090B;
-            color: #F4F4F5;
-            overflow-x: hidden;
-        }
-
-        /* Subtle Ambient Glows */
-        .hero-radial {
-            background: radial-gradient(circle at 50% 0%, rgba(255, 0, 0, 0.2) 0%, rgba(9, 9, 11, 0) 68%);
-        }
-
-        .glass-card {
-            background: rgba(20, 20, 25, 0.85);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .glass-card:hover {
-            border-color: rgba(255, 0, 0, 0.45);
-            box-shadow: 0 12px 35px -10px rgba(255, 0, 0, 0.22);
-        }
-
-        .yt-btn-glow {
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.45);
-            transition: all 0.25s ease;
-        }
-
-        .yt-btn-glow:hover {
-            box-shadow: 0 0 38px rgba(255, 0, 0, 0.75);
-            transform: translateY(-2px);
-        }
-
-        .insta-gradient {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-
-        .insta-gradient:hover {
-            filter: brightness(1.08);
-            transform: translateY(-2px);
-        }
-
-        .video-card-active {
-            border-color: #FF0000 !important;
-            box-shadow: 0 0 28px rgba(255, 0, 0, 0.32) !important;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .glow-red { box-shadow: 0 0 25px rgba(255, 0, 0, 0.35); }
+        .glow-red-sm { box-shadow: 0 0 12px rgba(255, 0, 0, 0.4); }
     </style>
 </head>
-<body 
-class="antialiased selection:bg-ytRed selection:text-white">
+<body class="bg-darkbg text-gray-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- Toast Notification Banner -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-zinc-900 border border-zinc-700 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span id="toast-message" class="text-sm font-medium">Copied!</span>
-        </div>
+    <!-- Top Credit Bar -->
+    <div class="bg-black/90 text-gray-400 text-center py-1.5 text-xs tracking-wider border-b border-gray-800">
+        Website Designed & Developed by <span class="text-red-500 font-semibold">MR_shahenshah</span>
     </div>
 
-    <!-- Sticky Glass Navigation Bar -->
-    <nav class="fixed top-0 inset-x-0 z-40 bg-zinc-950/85 backdrop-blur-xl border-b border-white/10">
-        <!-- Top Developer Credit Strip -->
-        <div class="bg-zinc-900/95 border-b border-white/5 py-1 px-4 text-center">
-            <p class="text-[11px] sm:text-xs text-zinc-400 tracking-wide font-medium">
-                Website Designed &amp; Developed by <span class="text-white font-semibold">MR_shahenshah</span>
-            </p>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <!-- Brand Logo & Channel Handle -->
-            <a href="#home" class="flex items-center gap-3 group shrink-0">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-ytRed to-red-800 flex items-center justify-center shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform">
-                    <i class="fa-brands fa-youtube text-white text-xl sm:text-2xl"></i>
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-darkbg/95 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Navbar Logo Avatar -->
+                <div class="w-10 h-10 rounded-full border-2 border-red-600 overflow-hidden bg-gray-800 flex items-center justify-center glow-red-sm flex-shrink-0">
+                    <img src="logo.png" alt="Sallu Talks Logo" class="w-full h-full object-cover" onerror="this.src='https://yt3.googleusercontent.com/ytc/AIdro_kXgJq6N4s2b5Q8W9Z3v1t2f6g7h8j9k0l1m2n3=s176-c-k-c0x00ffffff-no-rj'">
                 </div>
                 <div>
-                    <span class="font-display font-extrabold text-base sm:text-xl tracking-tight text-white block leading-none">
-                        Sallu<span class="text-ytRed">Talks</span>
-                    </span>
-                    <span class="text-xs text-zinc-400 font-medium">@sallutalkss</span>
+                    <h1 class="font-bold text-lg tracking-wide text-white flex items-center gap-1.5">
+                        Sallu <span class="text-youtube">Talks</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">@sallutalkss</p>
                 </div>
-            </a>
-
-            <!-- Desktop Navigation Links -->
-            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-300">
-                <a href="#home" class="hover:text-white transition-colors">Home</a>
-                <a href="#videos" class="hover:text-white transition-colors">Trending Videos</a>
-                <a href="#connect" class="hover:text-white transition-colors">Connect &amp; Contact</a>
             </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
+                <a href="#home" class="hover:text-red-500 transition">Home</a>
+                <a href="#videos" class="hover:text-red-500 transition">Trending Videos</a>
+                <a href="#about" class="hover:text-red-500 transition">About Channel</a>
+                <a href="#contact" class="hover:text-red-500 transition">Connect & Contact</a>
+            </nav>
 
-            <!-- Action Buttons -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="copyText('https://youtube.com/@sallutalkss?si=7NH8lwu_m3Nd3nIr', 'Channel link copied to clipboard!')" 
-                        title="Share Website / Channel" 
-                        class="p-2.5 sm:px-3.5 sm:py-2 rounded-full bg-zinc-800/90 hover:bg-zinc-700 text-zinc-200 text-sm font-medium border border-zinc-700/80 transition flex items-center gap-2">
-                    <i class="fa-solid fa-share-nodes text-ytRed"></i>
-                    <span class="hidden sm:inline">Share</span>
+            <div class="flex items-center space-x-3">
+                <button onclick="shareWebsite()" class="hidden sm:flex items-center space-x-1.5 bg-gray-800 hover:bg-gray-700 text-gray-200 px-3.5 py-2 rounded-full text-xs font-medium transition">
+                    <i class="fa-solid fa-share-nodes text-red-500"></i>
+                    <span>Share</span>
                 </button>
-                <a href="https://www.youtube.com/@sallutalkss?sub_confirmation=1" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="bg-ytRed hover:bg-ytDarkRed text-white font-display font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full flex items-center gap-2 yt-btn-glow">
-                    <i class="fa-brands fa-youtube text-base"></i>
+                <a href="https://youtube.com/@sallutalkss?sub_confirmation=1" target="_blank" class="bg-youtube hover:bg-red-700 text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide flex items-center space-x-1.5 glow-red-sm transition transform hover:scale-105">
+                    <i class="fa-brands fa-youtube text-sm"></i>
                     <span>Subscribe</span>
                 </a>
             </div>
         </div>
-    </nav>
-
-    <!-- Local File Notice Banner (Only visible if opened via file://) -->
-    <div id="local-file-banner" class="hidden pt-20 sm:pt-24 px-4">
-        <div class="max-w-4xl mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-amber-200">
-            <div class="flex items-center gap-2.5 text-center sm:text-left">
-                <i class="fa-solid fa-circle-info text-amber-400 text-base shrink-0"></i>
-                <span>
-                    <strong>Local File Preview (<code class="text-amber-300">file://</code>):</strong> YouTube browser security ki wajah se offline/local HTML files par video embed block karta hai (Error 153). Kisi bhi thumbnail par click karke seedha YouTube par video dekhein!
-                </span>
-            </div>
-            <button onclick="document.getElementById('local-file-banner').classList.add('hidden')" class="text-amber-300 hover:text-white text-xs font-semibold px-3 py-1 rounded-lg bg-amber-500/20 shrink-0">
-                OK
-            </button>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <header id="home" class="relative pt-28 pb-14 sm:pt-36 sm:pb-20 hero-radial overflow-hidden">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            
-            <!-- Creator Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-zinc-300 mb-6">
-                <span class="w-2 h-2 rounded-full bg-ytRed animate-pulse"></span>
-                <span>Official Creator Hub &bull; @sallutalkss</span>
-            </div>
-
-            <!-- Main Headline -->
-            <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white mb-5 leading-tight">
-                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-ytRed via-red-500 to-orange-500">Sallu Talks</span>
-            </h1>
-
-            <p class="max-w-2xl mx-auto text-base sm:text-xl text-zinc-400 mb-8 leading-relaxed">
-                Viral shorts, mind-blowing real-life stories, aur entertainment ka non-stop dose! Channel ko subscribe karein aur bell icon zaroor dabayein.
-            </p>
-
-            <!-- Primary CTA Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-                <a href="https://www.youtube.com/@sallutalkss?sub_confirmation=1" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="w-full sm:w-auto bg-ytRed hover:bg-ytDarkRed text-white font-display font-bold text-base sm:text-lg px-8 py-4 rounded-2xl flex items-center justify-center gap-3 yt-btn-glow">
-                    <i class="fa-brands fa-youtube text-2xl"></i>
-                    <span>Subscribe on YouTube</span>
-                    <i class="fa-solid fa-bell text-sm animate-bounce"></i>
-                </a>
-
-                <a href="#videos" 
-                   class="w-full sm:w-auto bg-zinc-900/90 hover:bg-zinc-800 text-white font-display font-semibold text-base sm:text-lg px-8 py-4 rounded-2xl border border-zinc-700/80 hover:border-zinc-500 flex items-center justify-center gap-2.5 transition-all">
-                    <i class="fa-solid fa-play text-ytRed"></i>
-                    <span>Watch Latest Videos</span>
-                </a>
-            </div>
-
-            <!-- Quick Social Pills (Facebook, Instagram & Channel) -->
-            <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
-                <a href="https://www.facebook.com/share/r/1EQEELQXes/" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="px-4 py-2 rounded-full bg-[#1877F2]/15 hover:bg-[#1877F2]/25 border border-[#1877F2]/40 text-blue-300 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                    <i class="fa-brands fa-facebook text-[#1877F2] text-base"></i>
-                    <span>Facebook</span>
-                </a>
-
-                <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="px-4 py-2 rounded-full bg-pink-500/15 hover:bg-pink-500/25 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                    <i class="fa-brands fa-instagram text-pink-400 text-base"></i>
-                    <span>@salluspeak</span>
-                </a>
-
-                <a href="mailto:contact.sallutalkss@gmail.com" 
-                   class="px-4 py-2 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
-                    <i class="fa-solid fa-envelope text-emerald-400 text-sm"></i>
-                    <span>Business Email</span>
-                </a>
-            </div>
-
-            <!-- Official YouTube Subscribe Widget Box (Safely wrapped & hidden on local file:// if blocked) -->
-            <div id="yt-widget-box" class="max-w-md mx-auto glass-card rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="text-center sm:text-left">
-                    <p class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">Official YouTube Widget</p>
-                    <p class="text-sm text-zinc-200 font-medium">1-Click Subscribe to Sallu Talks</p>
-                </div>
-                <div class="bg-zinc-950/90 px-3 py-2 rounded-xl border border-zinc-800 flex items-center justify-center min-h-[52px]">
-                    <div class="g-ytsubscribe" 
-                         data-channelid="UC3Spku3havb09nl4VdcVrmgBnao" 
-                         data-layout="full" 
-                         data-theme="dark" 
-                         data-count="default">
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </header>
 
-    <!-- Featured Videos & Theater Section -->
-    <section id="videos" class="py-12 sm:py-20 border-t border-white/5 bg-zinc-950/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Section Header -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-                <div>
-                    <span class="text-ytRed font-bold text-xs uppercase tracking-widest block mb-2">Watch &amp; Enjoy</span>
-                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">Trending Videos</h2>
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section id="home" class="relative py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 via-darkbg to-darkbg border-b border-gray-800/60">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Hero Profile Avatar -->
+                <div class="w-28 h-28 mx-auto mb-6 rounded-full border-4 border-red-600 p-1 bg-gray-800 glow-red overflow-hidden shadow-2xl">
+                    <img src="logo.png" alt="Sallu Talks Profile" class="w-full h-full rounded-full object-cover" onerror="this.src='https://yt3.googleusercontent.com/ytc/AIdro_kXgJq6N4s2b5Q8W9Z3v1t2f6g7h8j9k0l1m2n3=s176-c-k-c0x00ffffff-no-rj'">
                 </div>
-                <a href="https://youtube.com/@sallutalkss?si=7NH8lwu_m3Nd3nIr" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="text-sm font-semibold text-zinc-300 hover:text-ytRed transition flex items-center gap-2">
-                    <span>View All Videos on YouTube</span>
-                    <i class="fa-solid fa-arrow-right"></i>
+
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    Welcome to <span class="text-youtube">Sallu Talks</span>
+                </h2>
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+                    Viral shorts, mind-blowing real-life stories, aur entertainment ka non-stop dose! Channel ko subscribe karein aur bell icon zaroor dabayein.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <a href="https://youtube.com/@sallutalkss?sub_confirmation=1" target="_blank" class="bg-youtube hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded-full shadow-lg glow-red transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                        <span>Subscribe on YouTube</span>
+                        <i class="fa-solid fa-bell text-xs ml-1"></i>
+                    </a>
+                    <a href="#videos" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-7 py-3.5 rounded-full border border-gray-700 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-play text-red-500"></i>
+                        <span>Watch Latest Videos</span>
+                    </a>
+                </div>
+
+                <!-- Social & Contact Quick Links -->
+                <div class="flex flex-wrap justify-center gap-3 text-sm">
+                    <a href="https://www.facebook.com/share/r/1EQEELQXes/" target="_blank" class="bg-gray-900 hover:bg-blue-600/20 text-gray-300 hover:text-blue-400 border border-gray-800 px-4 py-2 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-brands fa-facebook text-blue-500"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" target="_blank" class="bg-gray-900 hover:bg-pink-600/20 text-gray-300 hover:text-pink-400 border border-gray-800 px-4 py-2 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-brands fa-instagram text-pink-500"></i>
+                        <span>@salluspeak</span>
+                    </a>
+                    <a href="mailto:contact.sallutalkss@gmail.com" class="bg-gray-900 hover:bg-emerald-600/20 text-gray-300 hover:text-emerald-400 border border-gray-800 px-4 py-2 rounded-xl transition flex items-center space-x-2">
+                        <i class="fa-solid fa-envelope text-emerald-500"></i>
+                        <span>Business Email</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Official YouTube Subscribe Widget -->
+        <section class="py-8 bg-black/40 border-b border-gray-800">
+            <div class="max-w-xl mx-auto px-4 text-center">
+                <h3 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">Official YouTube Widget</h3>
+                <div class="bg-cardbg p-4 rounded-2xl border border-gray-800 shadow-xl inline-block w-full flex justify-center">
+                    <script src="https://apis.google.com/js/platform.js"></script>
+                    <div class="g-ytsubscribe" data-channelid="UC3Spku3havb09nl4VdcVrmg" data-layout="full" data-count="default"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section id="videos" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 border-b border-gray-800 pb-4">
+                <div>
+                    <span class="text-red-500 font-semibold text-xs uppercase tracking-widest">Trending Content</span>
+                    <h3 class="text-3xl font-bold text-white mt-1">Featured Shorts & Videos</h3>
+                </div>
+                <a href="https://youtube.com/@sallutalkss" target="_blank" class="mt-4 md:mt-0 text-sm font-semibold text-red-500 hover:text-red-400 flex items-center space-x-1.5 transition">
+                    <span>View All on YouTube</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
 
-            <!-- Main Featured Theater Player (Thumbnail-First to Guarantee Zero Error 153) -->
-            <div id="spotlight-container" class="glass-card rounded-3xl p-4 sm:p-6 mb-12 border border-zinc-800">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-4 px-1">
-                    <div class="flex items-center gap-2.5">
-                        <span class="px-2.5 py-1 rounded-md bg-ytRed text-white text-xs font-bold uppercase tracking-wider" id="spotlight-tag">
-                            VIRAL
-                        </span>
-                        <span class="text-xs sm:text-sm text-zinc-400 font-medium" id="spotlight-views">
-                            <i class="fa-solid fa-eye text-ytRed mr-1"></i> 13K+ views
-                        </span>
-                        <span class="text-xs text-zinc-300 bg-zinc-800 px-2 py-0.5 rounded font-mono" id="spotlight-duration">
-                            0:33
-                        </span>
-                    </div>
-                    <a id="spotlight-yt-link" 
-                       href="https://www.youtube.com/watch?v=YmkXLDEz7AY" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="text-xs sm:text-sm text-zinc-200 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5">
-                        <i class="fa-brands fa-youtube text-ytRed"></i>
-                        <span>Open in YouTube</span>
-                    </a>
-                </div>
-
-                <!-- Responsive 16:9 Stage (Shows HD Thumbnail & Play Button first; never renders raw iframe on load) -->
-                <div id="spotlight-stage" class="relative w-full aspect-video rounded-2xl overflow-hidden bg-zinc-950 shadow-2xl border border-zinc-800/90">
-                    <!-- Injected via JS -->
-                </div>
-
-                <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-1">
-                    <h3 id="spotlight-title" class="font-display font-bold text-lg sm:text-2xl text-white">
-                        UP me ghusi 308 pahiyon wali bala! 😱
-                    </h3>
-                    <a href="https://www.youtube.com/@sallutalkss?sub_confirmation=1" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="shrink-0 bg-ytRed hover:bg-ytDarkRed text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition flex items-center justify-center gap-2 yt-btn-glow">
-                        <i class="fa-brands fa-youtube"></i>
-                        <span>Subscribe for More</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4 Video Cards Grid with Crisp HD Thumbnails -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8" id="video-grid">
-                <!-- Dynamically populated by JS -->
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Dedicated Connect & Contact Section (Facebook, Instagram & Email) -->
-    <section id="connect" class="py-16 sm:py-24 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-ytRed font-bold text-xs uppercase tracking-widest block mb-2">Socials &amp; Collaborations</span>
-                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-3">Connect &amp; Contact</h2>
-                <p class="text-zinc-400 text-sm sm:text-base">
-                    Sallu Talks se har social platform par judein ya sponsorship aur business inquiries ke liye direct email karein.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Videos Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <!-- Card 1: Facebook -->
-                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+                <!-- Video 1 -->
+                <div class="bg-cardbg rounded-2xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition duration-300 group shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-[#1877F2]/15 border border-[#1877F2]/30 text-[#1877F2] flex items-center justify-center text-3xl mb-5">
-                            <i class="fa-brands fa-facebook"></i>
+                        <div class="relative aspect-[9/16] bg-black overflow-hidden">
+                            <img src="https://img.youtube.com/vi/BzrbkeOddjg/hqdefault.jpg" alt="Ek Bihari Russian pe bhari" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
+                                <a href="http://www.youtube.com/watch?v=BzrbkeOddjg" target="_blank" class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl glow-red transform group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play ml-0.5 text-lg"></i>
+                                </a>
+                            </div>
+                            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">Viral</span>
                         </div>
-                        <h3 class="font-display font-bold text-xl text-white mb-2">Facebook</h3>
-                        <p class="text-sm text-zinc-400 mb-6 leading-relaxed">
-                            Hamare viral reels, exclusive clips aur daily updates dekhne ke liye Facebook par follow karein.
-                        </p>
+                        <div class="p-4">
+                            <h4 class="font-bold text-white text-sm line-clamp-2 group-hover:text-red-500 transition">Ek Bihari Russian pe bhari 😱 #shorts #viral #trending</h4>
+                        </div>
                     </div>
-                    <a href="https://www.facebook.com/share/r/1EQEELQXes/" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="w-full py-3.5 px-5 rounded-xl bg-[#1877F2] hover:bg-[#166FE5] text-white font-display font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 transition">
-                        <i class="fa-brands fa-facebook text-base"></i>
-                        <span>Follow on Facebook</span>
-                    </a>
+                    <div class="px-4 pb-4 pt-0 flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/60 pt-3 mt-2">
+                        <span><i class="fa-regular fa-eye mr-1 text-gray-500"></i> 2.6K+ views</span>
+                        <a href="http://www.youtube.com/watch?v=BzrbkeOddjg" target="_blank" class="text-red-500 font-medium hover:underline">Watch &rarr;</a>
+                    </div>
                 </div>
 
-                <!-- Card 2: Instagram -->
-                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+                <!-- Video 2 -->
+                <div class="bg-cardbg rounded-2xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition duration-300 group shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-pink-500/15 border border-pink-500/30 text-pink-400 flex items-center justify-center text-3xl mb-5">
-                            <i class="fa-brands fa-instagram"></i>
+                        <div class="relative aspect-[9/16] bg-black overflow-hidden">
+                            <img src="https://img.youtube.com/vi/YmkXLDEz7AY/hqdefault.jpg" alt="UP me ghusi 308 pahiyon wali bala!" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
+                                <a href="http://www.youtube.com/watch?v=YmkXLDEz7AY" target="_blank" class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl glow-red transform group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play ml-0.5 text-lg"></i>
+                                </a>
+                            </div>
+                            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">Trending</span>
                         </div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <h3 class="font-display font-bold text-xl text-white">Instagram</h3>
-                            <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-pink-500/15 text-pink-300 border border-pink-500/30">@salluspeak</span>
+                        <div class="p-4">
+                            <h4 class="font-bold text-white text-sm line-clamp-2 group-hover:text-red-500 transition">UP me ghusi 308 pahiyon wali bala! 😱 #shorts #viral #trending</h4>
                         </div>
-                        <p class="text-sm text-zinc-400 mb-6 leading-relaxed">
-                            Behind-the-scenes stories, trending reels aur direct DM ke liye Instagram par connect karein.
-                        </p>
                     </div>
-                    <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="w-full py-3.5 px-5 rounded-xl insta-gradient text-white font-display font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-pink-600/25 transition">
-                        <i class="fa-brands fa-instagram text-base"></i>
-                        <span>Follow on Instagram</span>
-                    </a>
+                    <div class="px-4 pb-4 pt-0 flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/60 pt-3 mt-2">
+                        <span><i class="fa-regular fa-eye mr-1 text-gray-500"></i> 13K+ views</span>
+                        <a href="http://www.youtube.com/watch?v=YmkXLDEz7AY" target="_blank" class="text-red-500 font-medium hover:underline">Watch &rarr;</a>
+                    </div>
                 </div>
 
-                <!-- Card 3: Business & Collaborations Email -->
-                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between">
+                <!-- Video 3 -->
+                <div class="bg-cardbg rounded-2xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition duration-300 group shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-5">
-                            <i class="fa-solid fa-envelope-open-text"></i>
+                        <div class="relative aspect-[9/16] bg-black overflow-hidden">
+                            <img src="https://img.youtube.com/vi/may65ZIm7wg/hqdefault.jpg" alt="Don't underestimate power of shrabi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
+                                <a href="http://www.youtube.com/watch?v=may65ZIm7wg" target="_blank" class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl glow-red transform group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play ml-0.5 text-lg"></i>
+                                </a>
+                            </div>
+                            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">Shorts</span>
                         </div>
-                        <h3 class="font-display font-bold text-xl text-white mb-1">Business &amp; Collabs</h3>
-                        <p class="text-xs font-mono text-emerald-300 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1.5 rounded-lg inline-block mb-4 break-all">
-                            contact.sallutalkss@gmail.com
-                        </p>
-                        <p class="text-sm text-zinc-400 mb-6 leading-relaxed">
-                            Sponsorships, brand promotions ya kisi bhi inquiry ke liye humein mail bhejein.
-                        </p>
+                        <div class="p-4">
+                            <h4 class="font-bold text-white text-sm line-clamp-2 group-hover:text-red-500 transition">Don't underestimate power of shrabi 🤯 #shrabi #drink #brazil</h4>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2.5">
-                        <a href="mailto:contact.sallutalkss@gmail.com" 
-                           class="flex-1 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-display font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            <span>Send Email</span>
-                        </a>
-                        <button onclick="copyText('contact.sallutalkss@gmail.com', 'Email copied: contact.sallutalkss@gmail.com')" 
-                                class="py-3.5 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-sm font-semibold transition flex items-center justify-center gap-1.5"
-                                title="Copy Email Address">
-                            <i class="fa-solid fa-copy text-emerald-400"></i>
-                            <span>Copy</span>
+                    <div class="px-4 pb-4 pt-0 flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/60 pt-3 mt-2">
+                        <span><i class="fa-regular fa-eye mr-1 text-gray-500"></i> 8.7K+ views</span>
+                        <a href="http://www.youtube.com/watch?v=may65ZIm7wg" target="_blank" class="text-red-500 font-medium hover:underline">Watch &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="bg-cardbg rounded-2xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition duration-300 group shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[9/16] bg-black overflow-hidden">
+                            <img src="https://img.youtube.com/vi/69DeFKEI9YY/hqdefault.jpg" alt="Ye teacher ne toh Sarkar ka kam khud Hi kar liya" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
+                                <a href="http://www.youtube.com/watch?v=69DeFKEI9YY" target="_blank" class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl glow-red transform group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play ml-0.5 text-lg"></i>
+                                </a>
+                            </div>
+                            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow">Education</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-white text-sm line-clamp-2 group-hover:text-red-500 transition">Ye teacher ne toh Sarkar ka kam khud Hi kar liya 😱 #prashantkirad</h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 pt-0 flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/60 pt-3 mt-2">
+                        <span><i class="fa-regular fa-eye mr-1 text-gray-500"></i> 4.4K+ views</span>
+                        <a href="http://www.youtube.com/watch?v=69DeFKEI9YY" target="_blank" class="text-red-500 font-medium hover:underline">Watch &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Channel Section -->
+        <section id="about" class="py-16 bg-gray-900/50 border-t border-b border-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-3xl font-bold text-white mb-6">About Sallu Talks</h3>
+                <p class="text-gray-300 leading-relaxed text-base sm:text-lg mb-8">
+                    Welcome to <span class="text-white font-semibold">Sallu Talks</span>! Yahan aapko milte hain sabse interesting trending shorts, entertainment, aur informative viral videos. Agar aapko comedy aur trending updates pasand hain toh channel ko subscribe karna na bhulein!
+                </p>
+                <a href="https://youtube.com/@sallutalkss?sub_confirmation=1" target="_blank" class="inline-flex items-center space-x-2 bg-youtube hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-full shadow-lg glow-red transition transform hover:scale-105">
+                    <i class="fa-brands fa-youtube text-lg"></i>
+                    <span>Join Our Community & Subscribe</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Connect & Contact Section -->
+        <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-red-500 font-semibold text-xs uppercase tracking-widest">Get In Touch</span>
+                <h3 class="text-3xl font-bold text-white mt-1">Connect & Social Media</h3>
+                <p class="text-gray-400 text-sm mt-2">Sallu Talks se judne ke liye niche diye gaye links par click karein.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Facebook Card -->
+                <a href="https://www.facebook.com/share/r/1EQEELQXes/" target="_blank" class="bg-cardbg hover:bg-gray-800/80 p-6 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition group flex flex-col items-center text-center shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-500 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-1">Facebook</h4>
+                    <p class="text-xs text-gray-400 mb-4">Official Facebook Reels & Videos</p>
+                    <span class="text-xs font-semibold text-blue-400 group-hover:underline">Visit Profile &rarr;</span>
+                </a>
+
+                <!-- Instagram Card -->
+                <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" target="_blank" class="bg-cardbg hover:bg-gray-800/80 p-6 rounded-2xl border border-gray-800 hover:border-pink-500/50 transition group flex flex-col items-center text-center shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-pink-600/10 text-pink-500 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-lg mb-1">Instagram</h4>
+                    <p class="text-xs text-gray-400 mb-4">@salluspeak</p>
+                    <span class="text-xs font-semibold text-pink-400 group-hover:underline">Follow on Insta &rarr;</span>
+                </a>
+
+                <!-- Email Card -->
+                <div class="bg-cardbg p-6 rounded-2xl border border-gray-800 hover:border-emerald-500/50 transition flex flex-col items-center text-center shadow-lg justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-600/10 text-emerald-500 flex items-center justify-center text-2xl mb-4 mx-auto">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg mb-1">Business Email</h4>
+                        <p class="text-xs text-gray-400 mb-3 break-all">contact.sallutalkss@gmail.com</p>
+                    </div>
+                    <div class="flex items-center gap-2 w-full mt-2">
+                        <a href="mailto:contact.sallutalkss@gmail.com" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-semibold transition text-center">Send Mail</a>
+                        <button onclick="copyEmail(this)" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-2 rounded-xl text-xs font-semibold transition" title="Copy Email">
+                            <i class="fa-regular fa-copy"></i>
                         </button>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 bg-zinc-950 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-full bg-ytRed flex items-center justify-center">
-                    <i class="fa-brands fa-youtube text-white text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-display font-bold text-white text-base">Sallu Talks</span>
-                    <span class="text-xs text-zinc-500 block">Channel ID: UC3Spku3havb09nl4VdcVrmgBnao</span>
-                </div>
+    <footer class="bg-black border-t border-gray-800/80 py-10 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="font-bold text-white tracking-wider">Sallu <span class="text-youtube">Talks</span></span>
             </div>
-
-            <div class="flex items-center gap-4">
-                <a href="https://www.youtube.com/@sallutalkss?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-zinc-900 hover:bg-ytRed text-zinc-300 hover:text-white flex items-center justify-center transition" title="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.facebook.com/share/r/1EQEELQXes/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-zinc-900 hover:bg-[#1877F2] text-zinc-300 hover:text-white flex items-center justify-center transition" title="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-zinc-900 hover:bg-pink-600 text-zinc-300 hover:text-white flex items-center justify-center transition" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="mailto:contact.sallutalkss@gmail.com" class="w-10 h-10 rounded-full bg-zinc-900 hover:bg-emerald-600 text-zinc-300 hover:text-white flex items-center justify-center transition" title="Email">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+            <div class="flex justify-center space-x-6 text-gray-400 text-lg">
+                <a href="https://youtube.com/@sallutalkss" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/r/1EQEELQXes/" target="_blank" class="hover:text-blue-500 transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/salluspeak?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" target="_blank" class="hover:text-pink-500 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:contact.sallutalkss@gmail.com" class="hover:text-emerald-500 transition"><i class="fa-solid fa-envelope"></i></a>
             </div>
-
-            <p class="text-xs text-zinc-500 text-center sm:text-right">
-                &copy; 2026 Sallu Talks (@sallutalkss). All rights reserved.
-            </p>
+            <p class="text-xs text-gray-500">&copy; 2026 Sallu Talks. All rights reserved.</p>
+            <p class="text-xs text-gray-600 pt-2">Website Designed & Developed by <span class="text-gray-400 font-medium">MR_shahenshah</span></p>
         </div>
     </footer>
 
-    <!-- Application Logic: Thumbnail Fallbacks, Zero Error 153 Player & Clipboard -->
+    <!-- JavaScript Helpers -->
     <script>
-        const isLocalFile = window.location.protocol === 'file:';
-
-        // 4 Featured Videos from Sallu Talks
-        const videosData = [
-            {
-                id: 'YmkXLDEz7AY',
-                title: 'UP me ghusi 308 pahiyon wali bala! 😱',
-                views: '13K+ views',
-                duration: '0:33',
-                tag: 'VIRAL'
-            },
-            {
-                id: 'may65ZIm7wg',
-                title: "Don't underestimate power of shrabi 🤯",
-                views: '8.7K+ views',
-                duration: '0:17',
-                tag: 'TRENDING'
-            },
-            {
-                id: '69DeFKEI9YY',
-                title: 'Ye teacher ne toh Sarkar ka kam khud Hi kar liya 😱😱',
-                views: '4.4K+ views',
-                duration: '0:31',
-                tag: 'POPULAR'
-            },
-            {
-                id: 'BzrbkeOddjg',
-                title: 'Ek Bihari Russian pe bhari 😱',
-                views: '2.5K+ views',
-                duration: '0:28',
-                tag: 'NEW'
-            }
-        ];
-
-        let activeVideoId = videosData[0].id;
-
-        // Custom SVG Gradient Fallback Poster (Guarantees thumbnail NEVER appears broken even offline)
-        function getCustomFallbackSVG(title) {
-            const safeTitle = (title || 'Sallu Talks').replace(/[<>&"']/g, '').slice(0, 38);
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
-                <defs>
-                    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="#18181B"/>
-                        <stop offset="50%" stop-color="#09090B"/>
-                        <stop offset="100%" stop-color="#3B0707"/>
-                    </linearGradient>
-                </defs>
-                <rect width="1280" height="720" fill="url(#bgGrad)"/>
-                <circle cx="640" cy="300" r="76" fill="#FF0000"/>
-                <polygon points="620,266 620,334 678,300" fill="#FFFFFF"/>
-                <text x="640" y="440" font-family="sans-serif" font-size="34" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SALLU TALKS (@sallutalkss)</text>
-                <text x="640" y="492" font-family="sans-serif" font-size="24" fill="#A1A1AA" text-anchor="middle">${safeTitle}</text>
-            </svg>`;
-            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
-        }
-
-        // Progressive Thumbnail Error Handler: hqdefault -> mqdefault -> Custom SVG Poster
-        function handleThumbnailError(imgEl, videoId, title) {
-            if (!imgEl.dataset.triedMq) {
-                imgEl.dataset.triedMq = 'true';
-                imgEl.src = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Sallu Talks',
+                    text: 'Check out Sallu Talks YouTube Channel & Official Website!',
+                    url: window.location.href
+                }).catch(() => {});
             } else {
-                imgEl.onerror = null;
-                imgEl.src = getCustomFallbackSVG(title);
+                navigator.clipboard.writeText(window.location.href);
+                alert('Website link copied to clipboard!');
             }
         }
 
-        // Render Featured Theater Player Stage
-        function renderSpotlight(video, playClicked = false) {
-            const stage = document.getElementById('spotlight-stage');
-            const titleEl = document.getElementById('spotlight-title');
-            const tagEl = document.getElementById('spotlight-tag');
-            const viewsEl = document.getElementById('spotlight-views');
-            const durationEl = document.getElementById('spotlight-duration');
-            const ytLinkEl = document.getElementById('spotlight-yt-link');
-
-            titleEl.textContent = video.title;
-            tagEl.textContent = video.tag;
-            viewsEl.innerHTML = `<i class="fa-solid fa-eye text-ytRed mr-1"></i> ${video.views}`;
-            durationEl.textContent = video.duration;
-            ytLinkEl.href = `https://www.youtube.com/watch?v=${video.id}`;
-
-            // If user clicked Play on an http/https hosted site, load privacy-enhanced nocookie embed
-            if (playClicked && !isLocalFile) {
-                stage.innerHTML = `
-                    <iframe class="w-full h-full"
-                            src="https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0"
-                            title="${video.title}"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                    </iframe>
-                `;
-                return;
-            }
-
-            // If user clicked Play on a local file:// download, show clean overlay preventing Error 153
-            if (playClicked && isLocalFile) {
-                stage.innerHTML = `
-                    <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
-                         alt="${video.title}"
-                         onerror="handleThumbnailError(this, '${video.id}', '${video.title.replace(/'/g, "\\'")}')"
-                         class="w-full h-full object-cover opacity-40 scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50 flex flex-col items-center justify-center p-6 text-center">
-                        <div class="w-14 h-14 rounded-2xl bg-ytRed/20 border border-ytRed/50 text-ytRed flex items-center justify-center text-2xl mb-3">
-                            <i class="fa-brands fa-youtube"></i>
-                        </div>
-                        <h4 class="font-display font-bold text-lg sm:text-2xl text-white mb-2">
-                            Local File Preview Detected
-                        </h4>
-                        <p class="text-xs sm:text-sm text-zinc-300 max-w-md mb-5">
-                            YouTube <code class="text-amber-300">file://</code> par direct video embed block karta hai. Video dekhne ke liye neeche button par click karein:
-                        </p>
-                        <a href="https://www.youtube.com/watch?v=${video.id}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="bg-ytRed hover:bg-ytDarkRed text-white font-display font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl flex items-center gap-2.5 yt-btn-glow">
-                            <i class="fa-brands fa-youtube text-xl"></i>
-                            <span>Watch on YouTube App / Browser</span>
-                        </a>
-                    </div>
-                `;
-                return;
-            }
-
-            // Initial State: Crisp HD Thumbnail + Glowing Red Play Button + Duration Badge
-            stage.innerHTML = `
-                <div onclick="selectAndPlayVideo('${video.id}')" class="w-full h-full cursor-pointer relative group">
-                    <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
-                         alt="${video.title}"
-                         onerror="handleThumbnailError(this, '${video.id}', '${video.title.replace(/'/g, "\\'")}')"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
-                    
-                    <!-- Center Glowing Red Play Button -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-ytRed text-white flex items-center justify-center shadow-2xl shadow-red-600/70 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-play text-2xl sm:text-3xl ml-1"></i>
-                        </div>
-                        <span class="mt-3 px-4 py-1 rounded-full bg-black/75 backdrop-blur-md text-white text-xs font-semibold border border-white/15">
-                            Click to Play
-                        </span>
-                    </div>
-
-                    <!-- Duration Badge -->
-                    <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/85 text-white text-xs font-mono font-bold border border-white/10">
-                        ${video.duration}
-                    </span>
-                </div>
-            `;
-        }
-
-        // Render All 4 Video Cards in Grid
-        function renderVideoGrid() {
-            const grid = document.getElementById('video-grid');
-            grid.innerHTML = '';
-
-            videosData.forEach((video) => {
-                const isSelected = video.id === activeVideoId;
-                const card = document.createElement('div');
-                card.className = `glass-card rounded-2xl overflow-hidden flex flex-col justify-between ${isSelected ? 'video-card-active' : ''}`;
-
-                card.innerHTML = `
-                    <div>
-                        <!-- HD Thumbnail Poster -->
-                        <div onclick="selectAndPlayVideo('${video.id}')" class="relative aspect-video w-full bg-zinc-950 overflow-hidden cursor-pointer group">
-                            <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
-                                 alt="${video.title}"
-                                 loading="lazy"
-                                 onerror="handleThumbnailError(this, '${video.id}', '${video.title.replace(/'/g, "\\'")}')"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
-
-                            <!-- Tag Badge -->
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-ytRed text-white text-[11px] font-bold uppercase tracking-wider shadow">
-                                ${video.tag}
-                            </span>
-
-                            <!-- Glowing Red Play Button Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-14 h-14 rounded-full bg-ytRed text-white flex items-center justify-center shadow-xl shadow-red-600/60 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fa-solid fa-play text-xl ml-0.5"></i>
-                                </div>
-                            </div>
-
-                            <!-- Duration Badge -->
-                            <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-black/85 text-white text-xs font-mono font-semibold border border-white/10">
-                                ${video.duration}
-                            </span>
-                        </div>
-
-                        <!-- Card Details -->
-                        <div class="p-5">
-                            <div class="flex items-center justify-between gap-2 mb-2">
-                                <span class="text-xs text-ytRed font-bold uppercase tracking-wider">@sallutalkss</span>
-                                <span class="text-xs text-zinc-400 font-medium">
-                                    <i class="fa-solid fa-eye text-zinc-500 mr-1"></i>${video.views}
-                                </span>
-                            </div>
-                            <h3 onclick="selectAndPlayVideo('${video.id}')" class="font-display font-bold text-lg text-white hover:text-ytRed transition-colors cursor-pointer leading-snug">
-                                ${video.title}
-                            </h3>
-                        </div>
-                    </div>
-
-                    <!-- Card Footer Buttons -->
-                    <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-zinc-800/60">
-                        <button onclick="selectAndPlayVideo('${video.id}')" 
-                                class="flex-1 py-2.5 px-3 rounded-xl bg-zinc-800 hover:bg-ytRed text-white text-xs font-semibold transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Play Preview</span>
-                        </button>
-                        <a href="https://www.youtube.com/watch?v=${video.id}" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="py-2.5 px-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 text-xs font-semibold transition flex items-center gap-1.5">
-                            <i class="fa-brands fa-youtube text-ytRed text-sm"></i>
-                            <span>Watch on YouTube</span>
-                        </a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Update Top Featured Player & Smooth Scroll
-        function selectAndPlayVideo(videoId) {
-            const video = videosData.find(v => v.id === videoId);
-            if (!video) return;
-
-            activeVideoId = videoId;
-            renderSpotlight(video, true);
-            renderVideoGrid();
-
-            document.getElementById('spotlight-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // Copy to Clipboard with Fallback & Toast
-        function copyText(text, successMsg) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast(successMsg);
-            } catch (err) {
-                showToast('Copied: ' + text);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.textContent = msg;
-            toast.classList.remove('translate-y-24', 'opacity-0');
+        function copyEmail(btn) {
+            navigator.clipboard.writeText('contact.sallutalkss@gmail.com');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i>';
             setTimeout(() => {
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3000);
+                btn.innerHTML = originalHTML;
+            }, 2000);
         }
-
-        // Initialize on Load
-        window.addEventListener('DOMContentLoaded', () => {
-            if (isLocalFile) {
-                const banner = document.getElementById('local-file-banner');
-                const hero = document.getElementById('home');
-                const widgetBox = document.getElementById('yt-widget-box');
-                if (banner) banner.classList.remove('hidden');
-                if (hero) hero.classList.replace('pt-28', 'pt-10');
-                if (widgetBox) widgetBox.classList.add('hidden');
-            }
-
-            renderSpotlight(videosData[0], false);
-            renderVideoGrid();
-        });
     </script>
 </body>
 </html>
